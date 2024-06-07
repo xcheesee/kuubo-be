@@ -11,7 +11,7 @@ public class PostCommentController(ApplicationContext context) : ControllerBase
     private readonly ApplicationContext _context = context;
 
     [HttpGet]
-    public async Task<ActionResult<IEnumerable<PostCommentDTO>>> GetPostComments()
+    public async Task<ActionResult<IEnumerable<PostCommentDTO>>> GetComments()
     {
         return await _context.PostComments
         .Include(postComment => postComment.User)
@@ -33,8 +33,18 @@ public class PostCommentController(ApplicationContext context) : ControllerBase
         return PostCommentToDTO(postComment);
     }
 
+    [HttpGet("post/{postId}")]
+    public async Task<ActionResult<IEnumerable<PostCommentDTO>>> GetPostComments(int postId)
+    {
+        return await _context.PostComments
+        .Where(postComment => postComment.PostId == postId)
+        .Include(postComment => postComment.User)
+        .Select(comment => PostCommentToDTO(comment))
+        .ToListAsync();
+    }
+
     [HttpPost]
-    public async Task<ActionResult<PostComment>> PostPostComment(PostCommentDTO postComment)
+    public async Task<ActionResult<PostComment>> PostPostComment([FromForm] PostCommentDTO postComment)
     {
         var newComment = new PostComment
         {

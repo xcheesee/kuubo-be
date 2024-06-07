@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "KNt0ZAPVThHKpQCLFk2JPFBw2cwf4rhSNz0S4zbBd9hs1rKfxTdDn0T6SWSKpWokVC5AjlL6rYQK8pVg3o0Hhg==",
+  "dgSpecHash": "2B6iB6C1r7p1/bIsjxoK0hFAEVrouw4CEUXn2/6pp+p49uMGSbQGjoo5ZDnKhAGKdH+69TtmlG06AN3pxCLUGA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\x529427\\Documents\\Repos\\koob-be\\koob-be.csproj",
+  "projectFilePath": "C:\\Users\\x529427\\Documents\\Repos\\kuubo-be\\koob-be.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\x529427\\.nuget\\packages\\azure.core\\1.35.0\\azure.core.1.35.0.nupkg.sha512",
     "C:\\Users\\x529427\\.nuget\\packages\\azure.identity\\1.10.3\\azure.identity.1.10.3.nupkg.sha512",
