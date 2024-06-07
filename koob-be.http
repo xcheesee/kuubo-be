@@ -1,0 +1,6 @@
+@koob_be_HostAddress = http://localhost:5170
+
+GET {{koob_be_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
