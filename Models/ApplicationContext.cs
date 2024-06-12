@@ -7,6 +7,7 @@ public class ApplicationContext(DbContextOptions<ApplicationContext> options) : 
     public DbSet<User> Users { get; set; }
     public DbSet<Post> Posts { get; set; }
     public DbSet<PostComment> PostComments { get; set; }
+    public DbSet<UserPostLike> UserPostLikes { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -30,54 +31,54 @@ public class ApplicationContext(DbContextOptions<ApplicationContext> options) : 
             }
         );
 
-        modelBuilder.Entity<Post>()
-        .HasData(
-            new Post
-            {
-                Id = 1,
-                Content = "Bala",
-                UserId = 1,
-                User = null!
-            },
-            new Post
-            {
-                Id = 2,
-                Content = "Bagarai",
-                UserId = 2,
-                User = null!
-            }
-        );
+        //modelBuilder.Entity<Post>()
+        //.HasData(
+        //    new Post
+        //    {
+        //        Id = 1,
+        //        Content = "Bala",
+        //        UserId = 1,
+        //        User = null!
+        //    },
+        //    new Post
+        //    {
+        //        Id = 2,
+        //        Content = "Bagarai",
+        //        UserId = 2,
+        //        User = null!
+        //    }
+        //);
 
-        modelBuilder.Entity<PostComment>()
-        .HasData(
-            new PostComment
-            {
-                Id = 1,
-                UserId = 1,
-                PostId = 1,
-                Comment = "pog",
-                User = null!,
-                Post = null!
-            },
-            new PostComment
-            {
-                Id = 2,
-                UserId = 1,
-                PostId = 2,
-                Comment = "champ",
-                User = null!,
-                Post = null!
+        //modelBuilder.Entity<PostComment>()
+        //.HasData(
+        //    new PostComment
+        //    {
+        //        Id = 1,
+        //        UserId = 1,
+        //        PostId = 1,
+        //        Comment = "pog",
+        //        User = null!,
+        //        Post = null!
+        //    },
+        //    new PostComment
+        //    {
+        //        Id = 2,
+        //        UserId = 1,
+        //        PostId = 2,
+        //        Comment = "champ",
+        //        User = null!,
+        //        Post = null!
 
-            },
-            new PostComment
-            {
-                Id = 3,
-                UserId = 2,
-                PostId = 1,
-                Comment = "cringe",
-                User = null!,
-                Post = null!
-            }
-        );
+        //    },
+        //    new PostComment
+        //    {
+        //        Id = 3,
+        //        UserId = 2,
+        //        PostId = 1,
+        //        Comment = "cringe",
+        //        User = null!,
+        //        Post = null!
+        //    }
+        //);
     }
 }

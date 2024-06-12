@@ -15,6 +15,7 @@ public class PostCommentController(ApplicationContext context) : ControllerBase
     {
         return await _context.PostComments
         .Include(postComment => postComment.User)
+        .OrderByDescending(c => c.CreatedAt)
         .Select(comment => PostCommentToDTO(comment))
         .ToListAsync();
     }
@@ -39,6 +40,7 @@ public class PostCommentController(ApplicationContext context) : ControllerBase
         return await _context.PostComments
         .Where(postComment => postComment.PostId == postId)
         .Include(postComment => postComment.User)
+        .OrderByDescending(postComment => postComment.CreatedAt)
         .Select(comment => PostCommentToDTO(comment))
         .ToListAsync();
     }
@@ -46,12 +48,14 @@ public class PostCommentController(ApplicationContext context) : ControllerBase
     [HttpPost]
     public async Task<ActionResult<PostComment>> PostPostComment([FromForm] PostCommentDTO postComment)
     {
+        var now = DateTime.UtcNow;
         var newComment = new PostComment
         {
             Id = postComment.Id,
             Comment = postComment.Comment,
             UserId = postComment.UserId,
             PostId = postComment.PostId,
+            CreatedAt = now,
         };
         _context.PostComments.Add(newComment);
         await _context.SaveChangesAsync();

@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("koob-be")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+2f8b622385503f953bea1bf2b3e814f8d4b3ad9e")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+27b91961c63b4a4926051383f672941389c0e0e4")]
 [assembly: System.Reflection.AssemblyProductAttribute("koob-be")]
 [assembly: System.Reflection.AssemblyTitleAttribute("koob-be")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

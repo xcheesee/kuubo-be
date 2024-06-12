@@ -13,4 +13,5 @@ public class PostComment
     public Post Post { get; set; } = null!;
     public int PostId { get; set; }
     public int Likes { get; set; }
+    public DateTime CreatedAt { get; set; }
 }

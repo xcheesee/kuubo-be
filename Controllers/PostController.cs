@@ -11,12 +11,40 @@ public class PostController(ApplicationContext context) : ControllerBase
     private readonly ApplicationContext _context = context;
 
     [HttpGet]
-    public async Task<ActionResult<IEnumerable<PostDTO>>> GetPosts()
+    public async Task<ActionResult<IEnumerable<PostDTO>>> GetPosts([FromQuery] int userId)
     {
-        return await _context.Posts
+        var posts = await _context.Posts
             .Include(post => post.User)
+            .OrderByDescending(p => p.CreatedAt)
             .Select(post => PostToDTO(post))
             .ToListAsync();
+
+        for (int i = 0; i < posts.Count; i++)
+        {
+            var commentCount = _context.PostComments
+            .Where(c => c.PostId == posts[i].Id)
+            .Count();
+
+            var likeCount = _context.UserPostLikes
+            .Where(pl => pl.PostId == posts[i].Id)
+            .Count();
+
+            var liked = await _context.UserPostLikes
+            .FirstOrDefaultAsync(pl => (pl.UserId == userId) && (pl.PostId == posts[i].Id));
+
+            if (liked != null)
+            {
+                posts[i].Liked = true;
+            }
+            else
+            {
+                posts[i].Liked = false;
+            }
+
+            posts[i].CommentCount = commentCount;
+            posts[i].Likes = likeCount;
+        };
+        return posts;
     }
 
     [HttpGet("{id}")]
@@ -37,10 +65,12 @@ public class PostController(ApplicationContext context) : ControllerBase
     [HttpPost]
     public async Task<ActionResult<PostDTO>> PostPost([FromForm] PostDTO post)
     {
+        var now = DateTime.UtcNow;
         var newPost = new Post
         {
             Content = post.Content,
             UserId = post.UserId,
+            CreatedAt = now,
         };
         _context.Posts.Add(newPost);
         await _context.SaveChangesAsync();

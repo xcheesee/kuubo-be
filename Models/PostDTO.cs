@@ -6,4 +6,6 @@ public class PostDTO
     public int UserId { get; set; }
     public UserDTO? User { get; set; } = null!;
     public int Likes { get; set; }
+    public int? CommentCount { get; set; }
+    public bool? Liked { get; set; }
 }
